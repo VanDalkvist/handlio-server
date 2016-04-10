@@ -1,7 +1,10 @@
 // dependencies
 
 var child = require('child_process');
-var runner = require('path').normalize('./server/vendors/WinSendKeys/WinSendKeys.exe');
+var path = require('path');
+
+var driver = path.join(__dirname, '../server/vendors/WinSendKeys/WinSendKeys.exe');
+console.log(driver);
 
 var windowName = '[ACTIVE]'; // todo: from config (default) or from request params
 
@@ -17,10 +20,14 @@ module.exports = function (req, res) {
 
     keys = '"' + keys + '"';
 
-    var cmd = [runner, '-w', windowName, keys].join(' ');
+    // todo: DOESN'T work! need to fix path to the driver. Only works with absolute path to driver for now.
+    var cmd = [driver, '-w', windowName, keys].join(' ');
 
     child.exec(cmd, function (err, stdout, stderr) {
-        if (err) return _badRequest(res);
+        if (err) {
+            console.error(err);
+            return _badRequest(res);
+        }
 
         res.json({received: keyStrokes, encoded: keys});
     });
