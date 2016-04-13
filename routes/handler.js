@@ -11,23 +11,21 @@ var windowName = '[ACTIVE]'; // todo: from config (default) or from request para
 // exports
 
 module.exports = function (req, res) {
-    var keyStrokes = req.body.keys;
+    var keysString = req.body.keys;
 
-    if (!keyStrokes) return _badRequest(res);
+    if (!keysString) return _badRequest(res);
 
-    var keys = keyStrokes.replace('^', '^^');
-
-    keys = '"' + keys + '"';
+    var keys = _prepareKeys(keysString);
 
     var cmd = [driver, '-w', windowName, keys].join(' ');
 
-    child.exec(cmd, function (err, stdout, stderr) {
+    child.exec(cmd, function (err) {
         if (err) {
             debugError(err);
             return _badRequest(res);
         }
 
-        res.json({received: keyStrokes, encoded: keys});
+        res.json({received: keysString, encoded: keys});
     });
 };
 
@@ -35,4 +33,10 @@ module.exports = function (req, res) {
 
 function _badRequest(res) {
     res.status(400).json({error: 'Specify keys'});
+}
+
+function _prepareKeys(keys) {
+    // ctrl sign should be placed with double identifier
+    // wrap command to quotes
+    return '"' + keys.replace('^', '^^') + '"';
 }
