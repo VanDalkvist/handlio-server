@@ -34,9 +34,12 @@ function _execute(commandString) {
     });
 }
 
-
+/**
+ * ctrl sign should be placed with double identifier wrap command to quotes
+ * @param command unprepared command argument
+ * @returns {string} command to execute in WinSendKeys
+ * @private
+ */
 function _prepareCommand(command) {
-    // ctrl sign should be placed with double identifier
-    // wrap command to quotes
     return '"' + command.replace('^', '^^') + '"';
 }
