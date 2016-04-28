@@ -3,9 +3,9 @@ var jshint = require('gulp-jshint');
 var mocha = require('gulp-mocha');
 
 gulp.task('jshint', function() {
-    gulp.src(['test/**/*.js'])
+    gulp.src(['src/**/*.js'])
         .pipe(jshint())
-        .pipe(jshint.reporter());
+        .pipe(jshint.reporter('default'));
 });
 
 gulp.task('test', function() {
