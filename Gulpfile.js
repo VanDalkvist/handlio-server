@@ -9,7 +9,7 @@ gulp.task('jshint', function() {
 });
 
 gulp.task('test', function() {
-    gulp.src('specs/**/*.js')
+    gulp.src('tests/**/*.js')
         .pipe(mocha({ reporter: 'spec' }));
 });
 
