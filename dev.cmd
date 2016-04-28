@@ -1,1 +1,1 @@
-set DEBUG=handlio:* && node bin\www
+set DEBUG=handlio:* && npm start

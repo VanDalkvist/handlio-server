@@ -29,7 +29,9 @@ gulp.task('unit-test-with-cover', function () {
         .pipe(gulp.dest('reports'));
 });
 
-gulp.task('default', ['jshint', 'integration-tests', 'unit-test-with-cover']);
+gulp.task('tests', ['integration-tests', 'unit-test-with-cover']);
+
+gulp.task('default', ['jshint', 'tests']);
 
 function _makeDir(name) {
     try {

@@ -1,36 +1,41 @@
 #!/usr/bin/env node
 
-/**
- * Module dependencies.
- */
+// dependencies
 
 var app = require('../src/app');
 var debug = require('debug')('handlio:server');
 var http = require('http');
 
-/**
- * Get port from environment and store in Express.
- */
+// initialization
 
-var port = normalizePort(process.env.PORT || '3000');
+var ports = {
+    'test': process.env.TEST_PORT || '3003',
+    'development': process.env.PORT || '3000'
+};
+
+var env = app.get('env');
+var portEnv = ports[env] || '3000';
+
+var port = normalizePort(portEnv);
 app.set('port', port);
 
 var server = http.createServer(app);
-
-/**
- * Listen on provided port, on all network interfaces.
- */
 
 server.listen(port);
 server.on('error', onError);
 server.on('listening', onListening);
 
+// exports
+
 module.exports = server;
 
-/**
- * Normalize a port into a number, string, or false.
- */
+// private functions
 
+/**
+ * Process port value
+ * @param val port value
+ * @returns {*} port or named pipe
+ */
 function normalizePort(val) {
     var port = parseInt(val, 10);
 
@@ -46,10 +51,6 @@ function normalizePort(val) {
 
     return false;
 }
-
-/**
- * Event listener for HTTP server "error" event.
- */
 
 function onError(error) {
     if (error.syscall !== 'listen') {
