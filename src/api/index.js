@@ -1,6 +1,7 @@
 // initialization
 
 var express = require('express');
+var handleRouter = require('./handler.routes');
 
 // exports
 
@@ -13,7 +14,7 @@ router.all('/api/handle', function (req, res, next) {
     next();
 });
 
-router.post('/api/handle', require('./handler'));
+router.post('/api/handle', handleRouter.execute);
 
 module.exports = router;
 
