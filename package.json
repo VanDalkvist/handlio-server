@@ -3,18 +3,23 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www"
+    "prestart": "npm i",
+    "start": "set NODE_ENV=\"development\" && set PORT=3000 && node ./bin/www",
+    "pretest": "npm i && npm i gulp -g",
+    "test": "set NODE_ENV=\"test\" && set TEST_PORT=3003 && gulp tests"
   },
   "dependencies": {
     "body-parser": "~1.15.0",
     "cookie-parser": "~1.4.1",
     "debug": "~2.2.0",
     "express": "~4.13.1",
-    "morgan": "~1.7.0"
+    "morgan": "~1.7.0",
+    "q": "^1.4.1"
   },
   "devDependencies": {
     "chai": "^3.5.0",
     "gulp": "^3.9.1",
+    "gulp-coverage": "^0.3.38",
     "gulp-jshint": "~2.0.0",
     "gulp-mocha": "~2.2.0",
     "jshint": "^2.9.1",

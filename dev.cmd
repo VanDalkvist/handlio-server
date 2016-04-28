@@ -1,0 +1,1 @@
+set DEBUG=handlio:* && npm start

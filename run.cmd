@@ -1,1 +1,0 @@
-set DEBUG=handlio:* && node bin\www
