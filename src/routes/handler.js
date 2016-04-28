@@ -4,7 +4,7 @@ var child = require('child_process');
 var path = require('path');
 var debugError = require('debug')('handlio:handler:error');
 
-var driver = path.join(__dirname, '../vendors/WinSendKeys/WinSendKeys.exe');
+var driver = path.join(__dirname, '../../vendors/WinSendKeys/WinSendKeys.exe');
 
 var windowName = '[ACTIVE]'; // todo: from config (default) or from request params
 
