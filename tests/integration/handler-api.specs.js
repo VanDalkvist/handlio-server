@@ -1,9 +1,24 @@
+// dependencies
+
 var supertest = require('supertest');
 
-var serverUrl = 'localhost:' + (process.env.PORT || '3000');
+// initialization
+
+var server;
+var serverUrl = 'localhost:' + process.env.TEST_PORT;
 var request = supertest.agent(serverUrl);
 
+// tests
+
 describe('Handler API', function() {
+
+    before("Setup server", function () {
+        server = require('../../bin/www');
+    });
+
+    after("Close server", function () {
+        server.close();
+    });
 
     describe('Error states', function () {
 
