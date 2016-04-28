@@ -1,1 +1,1 @@
-set DEBUG=handlio:* && npm test
+npm test

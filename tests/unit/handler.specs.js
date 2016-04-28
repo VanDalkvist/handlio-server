@@ -7,50 +7,42 @@ describe('Handler', function () {
     describe('Error states', function () {
 
         it("keys value is empty", function () {
-            return handler.execute('').then(function () {
-            }, function (err) {
+            return handler.execute('').then(noop, function (err) {
                 expect(err).to.be.ok;
                 expect(err.message).to.equal('Keys is not provided.');
             });
         });
 
-        // context("should receive 404 error when http method is not 'POST'", function () {
-        //     it("'GET'", function (done) {
-        //         request
-        //             .get('/api/handle')
-        //             .expect(404)
-        //             .send()
-        //             .end(done);
-        //     });
-        //
-        //     it("'PUT'", function (done) {
-        //         request
-        //             .put('/api/handle')
-        //             .expect(404)
-        //             .send()
-        //             .end(done);
-        //     });
-        //
-        //     it("'DELETE'", function (done) {
-        //         request
-        //             .delete('/api/handle')
-        //             .expect(404)
-        //             .send()
-        //             .end(done);
-        //     });
-        // });
+        it("keys value is undefined", function () {
+            return handler.execute(undefined).then(noop, function (err) {
+                expect(err).to.be.ok;
+                expect(err.message).to.equal('Keys is not provided.');
+            });
+        });
+
+        it("keys value is null", function () {
+            return handler.execute(null).then(noop, function (err) {
+                expect(err).to.be.ok;
+                expect(err.message).to.equal('Keys is not provided.');
+            });
+        });
     });
 
     describe("Successful states", function () {
 
-        // it("when keys are specified and are not empty", function (done) {
-        //     request
-        //         .post('/api/handle')
-        //         .expect(200)
-        //         .send({ keys: '{ENTER}' })
-        //         .end(done);
-        // });
+        it("when keys are specified and not empty", function () {
+            return handler.execute('123').then(function (res) {
+                expect(res).to.be.ok;
+                expect(res.encoded).to.be.equal('"123"');
+            }, function (err) {
+                expect(err).to.be.equal(undefined);
+            });
+        });
 
     });
 
 });
+
+function noop() {
+
+}

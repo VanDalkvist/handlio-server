@@ -4,9 +4,9 @@
   "private": true,
   "scripts": {
     "prestart": "npm i",
-    "start": "set NODE_ENV=\"development\" && set PORT=3000 && node ./bin/www",
+    "start": "set NODE_ENV=development&& set PORT=3000&& node ./bin/www",
     "pretest": "npm i && npm i gulp -g",
-    "test": "set NODE_ENV=\"test\" && set TEST_PORT=3003 && gulp tests"
+    "test": "set DEBUG=false&& set NODE_ENV=test&& set TEST_PORT=3003&& gulp tests"
   },
   "dependencies": {
     "body-parser": "~1.15.0",
