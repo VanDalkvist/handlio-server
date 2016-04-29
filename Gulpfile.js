@@ -4,6 +4,7 @@ var fs = require('fs');
 var jshint = require('gulp-jshint');
 var mocha = require('gulp-mocha');
 var cover = require('gulp-coverage');
+var codecov = require('gulp-codecov');
 
 gulp.task('jshint', function() {
     gulp.src(['src/**/*.js'])
@@ -31,6 +32,11 @@ gulp.task('unit-test-with-cover', function () {
 });
 
 gulp.task('tests', ['integration-tests', 'unit-test-with-cover']);
+
+gulp.task('codecov', function () {
+    return gulp.src('./reports/coverage.lcov')
+        .pipe(codecov());
+});
 
 gulp.task('default', ['jshint', 'tests']);
 
