@@ -6,10 +6,9 @@ version: 1.0.{build}
 
 skip_tags: true
 
-cache: node_modules
-
 image: Visual Studio 2013
 build_script:
+  - cmd: npm cache clean
   - cmd: set GYP_MSVS_VERSION=2013
   - cmd: npm install --msvs_version=2013
   - cmd: npm install -g gulp
