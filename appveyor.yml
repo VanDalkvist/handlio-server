@@ -18,6 +18,10 @@ environment:
 version: 1.0.{build}
 
 skip_tags: true
+cache:
+  - C:\Users\appveyor\AppData\Roaming\npm\node_modules -> package.json  # global npm modules
+  - C:\Users\appveyor\AppData\Roaming\npm-cache -> package.json         # npm cache
+  - node_modules -> package.json
 
 platform:
   - x64
