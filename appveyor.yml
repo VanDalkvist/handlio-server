@@ -1,24 +1,37 @@
 # environment
 
 environment:
+  nodejs_version: "5"
+
   TEST_PORT: 3003
   NODE_ENV: test
   DEBUG: false
+
+  # coverage
+
+  COVERALLS_GIT_BRANCH: '$(APPVEYOR_REPO_BRANCH)'
+  COVERALLS_REPO_TOKEN:
+    secure: SMqGG7P6M0nuAs0gQvjnZHKPU1xruMPd5apdbf0n26efaJmP/x8h8YLzsRB/w+sk
 
 # general
 
 version: 1.0.{build}
 
-# build
-
 skip_tags: true
-
-build_script:
-  - cmd: npm install
-  - cmd: npm install -g gulp
 
 platform:
   - x64
+
+# build
+
+build: off
+
+install:
+  - cmd: npm install
+  - cmd: npm install -g gulp
+
+on_success:
+  - cmd: gulp coveralls
 
 # tests
 
