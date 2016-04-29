@@ -1,6 +1,8 @@
 version: 1.0.{build}
 skip_tags: true
 build: off
+before_test:
+  - bash < echo "Hello world"
 test_script:
   - cmd: test.cmd
 after_test:
