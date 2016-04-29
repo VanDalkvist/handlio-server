@@ -26,7 +26,7 @@ gulp.task('unit-test-with-cover', function () {
         }))
         .pipe(mocha())
         .pipe(cover.gather())
-        .pipe(cover.format())
+        .pipe(cover.format(['html', 'lcov']))
         .pipe(gulp.dest('reports'));
 });
 
