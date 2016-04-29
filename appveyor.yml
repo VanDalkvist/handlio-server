@@ -1,3 +1,8 @@
+# environment
+
+environment:
+  GYP_MSVS_VERSION: 2013
+
 # general
 
 version: 1.0.{build}
@@ -6,12 +11,12 @@ version: 1.0.{build}
 
 skip_tags: true
 
-image: Visual Studio 2013
 build_script:
-  - cmd: npm cache clean
-  - cmd: set GYP_MSVS_VERSION=2013
-  - cmd: npm install --msvs_version=2013
+  - cmd: npm install
   - cmd: npm install -g gulp
+
+platform:
+  - x64
 
 # tests
 
