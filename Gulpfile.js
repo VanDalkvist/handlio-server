@@ -18,12 +18,9 @@ gulp.task('integration-tests', function() {
 });
 
 gulp.task('unit-test-with-cover', function () {
-    _makeDir('coverage');
-
     return gulp.src('tests/**/*.js', { read: false })
         .pipe(cover.instrument({
-            pattern: ['src/**/*.js', 'bin/www'],
-            debugDirectory: 'coverage'
+            pattern: ['src/**/*.js', 'bin/www']
         }))
         .pipe(mocha())
         .pipe(cover.gather())
