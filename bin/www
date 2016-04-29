@@ -9,12 +9,14 @@ var http = require('http');
 // initialization
 
 var ports = {
-    'test': process.env.TEST_PORT || '3003',
-    'development': process.env.PORT || '3000'
+    test: process.env.TEST_PORT || '3003',
+    development: process.env.PORT || '3000'
 };
 
 var env = app.get('env');
-var portEnv = ports[env] || '3000';
+var portEnv = ports[env];
+
+debug('env: ' + env);
 
 var port = normalizePort(portEnv);
 app.set('port', port);
