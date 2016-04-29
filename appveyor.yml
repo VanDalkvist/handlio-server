@@ -1,7 +1,21 @@
+# general
+
 version: 1.0.{build}
+
+# build
+
 skip_tags: true
-build: off
+
+cache: node_modules
+
+build_script:
+  - cmd: npm install --msvs_version=2013
+  - cmd: npm install -g gulp
+
+# tests
+
 test_script:
-  - cmd: test.cmd
+  - cmd: gulp tests
+
 after_test:
   - cmd: gulp codecov
