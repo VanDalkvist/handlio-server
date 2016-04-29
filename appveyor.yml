@@ -1,7 +1,9 @@
 # environment
 
 environment:
-  GYP_MSVS_VERSION: 2013
+  TEST_PORT: 3003
+  NODE_ENV: test
+  DEBUG: false
 
 # general
 
@@ -22,6 +24,3 @@ platform:
 
 test_script:
   - cmd: gulp tests
-
-after_test:
-  - cmd: gulp codecov
