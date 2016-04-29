@@ -2,4 +2,6 @@ version: 1.0.{build}
 skip_tags: true
 build: off
 test_script:
-- cmd: test.cmd
+  - cmd: test.cmd
+after_test:
+  - bash <(curl -s https://codecov.io/bash)
