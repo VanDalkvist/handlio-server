@@ -18,7 +18,7 @@ var portEnv = ports[env];
 
 debug('env: ' + env);
 
-var port = normalizePort(portEnv);
+var port = parsePort(portEnv);
 app.set('port', port);
 
 var server = http.createServer(app);
@@ -33,25 +33,15 @@ module.exports = server;
 
 // private functions
 
-/**
- * Process port value
- * @param val port value
- * @returns {*} port or named pipe
- */
-function normalizePort(val) {
+function parsePort(val) {
     var port = parseInt(val, 10);
 
-    if (isNaN(port)) {
-        // named pipe
-        return val;
-    }
-
+    // port number
     if (port >= 0) {
-        // port number
         return port;
     }
 
-    return false;
+    throw new Error('Could not resolve port number.');
 }
 
 function onError(error) {
@@ -59,18 +49,15 @@ function onError(error) {
         throw error;
     }
 
-    var bind = typeof port === 'string'
-        ? 'Pipe ' + port
-        : 'Port ' + port;
+    var portMessage = 'Port ' + port;
 
-    // handle specific listen errors with friendly messages
     switch (error.code) {
         case 'EACCES':
-            console.error(bind + ' requires elevated privileges');
+            console.error(portMessage + ' requires elevated privileges');
             process.exit(1);
             break;
         case 'EADDRINUSE':
-            console.error(bind + ' is already in use');
+            console.error(portMessage + ' is already in use');
             process.exit(1);
             break;
         default:
@@ -79,9 +66,7 @@ function onError(error) {
 }
 
 function onListening() {
-    var addr = server.address();
-    var bind = typeof addr === 'string'
-        ? 'pipe ' + addr
-        : 'port ' + addr.port;
-    debug('Listening on ' + bind);
+    var address = server.address();
+    var portMessage = 'port ' + address.port;
+    debug('Listening on ' + portMessage);
 }
