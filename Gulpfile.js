@@ -48,12 +48,3 @@ gulp.task('coveralls', [], function() {
         .pipe(codecov());
 });
  */
-
-function _makeDir(name) {
-    try {
-        fs.mkdirSync(name);
-    } catch (e) {
-        if (e.code === 'EEXIST') console.log('Directory already exist.');
-        else console.error('Error during creating directory' + e);
-    }
-}
