@@ -17,13 +17,13 @@ router.all('/api/handle', function (req, res, next) {
 
 router.post('/api/handle', handleRouter.execute);
 
-router.use(errorsRouter['404']);
+router.use(errorsRouter.notFound);
 
 if (router.get('env') === 'development') {
-    router.use(errorsRouter['500forDev']);
+    router.use(errorsRouter.internalServerForDev);
 }
 
-router.use(errorsRouter['500']);
+router.use(errorsRouter.internalServer);
 
 module.exports = router;
 
