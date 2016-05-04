@@ -19,10 +19,6 @@ router.post('/api/handle', handleRouter.execute);
 
 router.use(errorsRouter.notFound);
 
-if (router.get('env') === 'development') {
-    router.use(errorsRouter.internalServerForDev);
-}
-
 router.use(errorsRouter.internalServer);
 
 module.exports = router;
