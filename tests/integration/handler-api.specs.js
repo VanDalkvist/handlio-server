@@ -13,10 +13,12 @@ var request = supertest.agent(serverUrl);
 describe('Handler API', function() {
 
     before("Setup server", function () {
+        console.log('Starting test server...');
         server = require('../../bin/www');
     });
 
     after("Close server", function () {
+        console.log('Closing test server...');
         server.close();
     });
 
