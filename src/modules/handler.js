@@ -4,7 +4,9 @@ var child = require('child_process');
 var path = require('path');
 var Q = require('q');
 
-var driver = path.join(__dirname, '../../vendors/WinSendKeys/WinSendKeys.exe');
+var vendors = require('handlio-vendors');
+
+var driver = path.join('node_modules', 'handlio-vendors', vendors['send-keys']);
 
 // initialization
 
