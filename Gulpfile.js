@@ -18,5 +18,4 @@ tasks.forEach(function (taskName) {
     task.init();
 });
 
-
 gulp.task('default', ['jshint', 'tests']);
