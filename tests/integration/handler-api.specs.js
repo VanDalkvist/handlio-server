@@ -96,7 +96,3 @@ describe('Handler API: need to be sure that handler API methods receive expected
     });
 
 });
-
-function noop() {
-
-}
