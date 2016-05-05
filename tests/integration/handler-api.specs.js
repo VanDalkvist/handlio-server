@@ -10,22 +10,20 @@ var request = supertest.agent(serverUrl);
 
 // tests
 
-describe('Handler API', function() {
+describe('Handler API: need to be sure that handler API methods receive expected responses', function() {
 
-    before("Setup server", function () {
-        console.log('Starting test server...');
+    before("Starting test server... ", function () {
         server = require('../../bin/www');
     });
 
-    after("Close server", function () {
-        console.log('Closing test server...');
+    after("Closing test server... ", function () {
         server.close();
     });
 
-    describe('Error states', function () {
+    describe("Next requests should be ended with error: ", function () {
 
-        context('should receive 400 error when', function () {
-            it("request body is undefined", function (done) {
+        context('should receive 400 error when ... ', function () {
+            it("... request body is undefined", function (done) {
                 request
                     .post('/api/handle')
                     .expect(400)
@@ -33,7 +31,7 @@ describe('Handler API', function() {
                     .end(done);
             });
 
-            it("request body is empty", function (done) {
+            it("... request body is empty", function (done) {
                 request
                     .post('/api/handle')
                     .expect(400)
@@ -41,7 +39,7 @@ describe('Handler API', function() {
                     .end(done);
             });
 
-            it("keys are not specified", function (done) {
+            it("... keys are not specified", function (done) {
                 request
                     .post('/api/handle')
                     .expect(400)
@@ -49,7 +47,7 @@ describe('Handler API', function() {
                     .end(done);
             });
 
-            it("keys value is empty", function (done) {
+            it("... keys value is empty", function (done) {
                 request
                     .post('/api/handle')
                     .expect(400)
@@ -58,8 +56,8 @@ describe('Handler API', function() {
             });
         });
 
-        context("should receive 404 error when http method is not 'POST'", function () {
-            it("'GET'", function (done) {
+        context("should receive 404 error when http method is not 'POST' yet ...", function () {
+            it("... 'GET'", function (done) {
                 request
                     .get('/api/handle')
                     .expect(404)
@@ -67,7 +65,7 @@ describe('Handler API', function() {
                     .end(done);
             });
 
-            it("'PUT'", function (done) {
+            it("... 'PUT'", function (done) {
                 request
                     .put('/api/handle')
                     .expect(404)
@@ -75,7 +73,7 @@ describe('Handler API', function() {
                     .end(done);
             });
 
-            it("'DELETE'", function (done) {
+            it("... 'DELETE'", function (done) {
                 request
                     .delete('/api/handle')
                     .expect(404)
@@ -85,9 +83,9 @@ describe('Handler API', function() {
         });
     });
 
-    describe("Successful states", function () {
+    describe("Next requests should receive success responses: ", function () {
 
-        it("when keys are specified and are not empty", function (done) {
+        it("... when keys are specified and not empty", function (done) {
             request
                 .post('/api/handle')
                 .expect(200)
@@ -98,3 +96,7 @@ describe('Handler API', function() {
     });
 
 });
+
+function noop() {
+
+}
