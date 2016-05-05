@@ -1,8 +1,8 @@
 // dependencies
 
 var gulp = require('gulp');
-var integration = require('./tests/integration.tests');
-var unit = require('./tests/unit-and-cover.tests');
+var mocha = require('gulp-mocha');
+var cover = require('gulp-coverage');
 
 // exports
 
@@ -15,8 +15,14 @@ module.exports = {
 // private methods
 
 function _init() {
-    integration.init();
-    unit.init();
-
-    gulp.task('tests', ['integration-tests', 'unit-test-with-cover']);
+    gulp.task('tests', function () {
+        return gulp.src('tests/**/*.js', { read: false })
+            .pipe(cover.instrument({
+                pattern: ['src/**/*.js', 'bin/www']
+            }))
+            .pipe(mocha({ reporter: 'spec', timeout: 15000 }))
+            .pipe(cover.gather())
+            .pipe(cover.format(['html', 'lcov']))
+            .pipe(gulp.dest('reports'));
+    });
 }
