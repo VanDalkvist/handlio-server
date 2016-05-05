@@ -19,7 +19,7 @@ function _404(req, res, next) {
     next(err);
 }
 
-function _500(err, req, res) {
+function _500(err, req, res, next) {
     debugError(err);
     res.status(err.status || 500);
     res.send(err.status ? err.message : 'Internal Server Error.');
