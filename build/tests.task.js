@@ -18,7 +18,7 @@ function _init() {
     gulp.task('tests', function () {
         return gulp.src('tests/**/*.js', { read: false })
             .pipe(cover.instrument({
-                pattern: ['src/**/*.js', 'bin/www']
+                pattern: ['src/**/*.js']
             }))
             .pipe(mocha({ reporter: 'spec', timeout: 15000 }))
             .pipe(cover.gather())
