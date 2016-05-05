@@ -2,6 +2,8 @@
   <configuration default="false" name="bin\www" type="NodeJSConfigurationType" factoryName="Node.js" path-to-node="project" path-to-js-file="bin/www" working-dir="$PROJECT_DIR$">
     <envs>
       <env name="DEBUG" value="handlio:*" />
+      <env name="NODE_ENV" value="development" />
+      <env name="PORT" value="3000" />
     </envs>
     <browser url="http://localhost:3000/" />
     <method />
