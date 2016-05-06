@@ -1,6 +1,10 @@
+// dependencies
+
 var handler = require('../../src/modules/handler');
 var chai = require('chai');
 var expect = chai.expect;
+
+// specs
 
 describe("Handler tests: need to be sure that handler works fine with various keys argument", function () {
 
