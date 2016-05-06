@@ -1,7 +1,6 @@
 // dependencies
 
 var fs = require('fs');
-var path = require('path');
 var gulp = require('gulp');
 
 // initialization
@@ -14,8 +13,8 @@ tasks.forEach(function (taskName) {
     if (taskName.indexOf('.task') === -1) return;
     if (fs.lstatSync(modulePath).isDirectory()) return;
 
-    var task = require(modulePath);
+    var task = require(modulePath); // eslint-disable-line global-require
     task.init();
 });
 
-gulp.task('default', ['jshint', 'tests']);
+gulp.task('default', ['lint', 'tests']);

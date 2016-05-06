@@ -40,6 +40,7 @@ init:
 # tests
 
 test_script:
+  - cmd: gulp lint
   - cmd: gulp tests
 
 on_success:

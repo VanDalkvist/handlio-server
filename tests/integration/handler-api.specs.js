@@ -13,7 +13,7 @@ var request = supertest.agent(serverUrl);
 describe('Handler API: need to be sure that handler API methods receive expected responses', function() {
 
     before("Starting test server... ", function () {
-        server = require('../../bin/www');
+        server = require('../../bin/www'); // eslint-disable-line global-require
     });
 
     after("Closing test server... ", function () {

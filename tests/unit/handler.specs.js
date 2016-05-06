@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-expressions */
+
 // dependencies
 
 var handler = require('../../src/modules/handler');
