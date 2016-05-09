@@ -10,8 +10,6 @@ var driver = path.join('node_modules', 'handlio-vendors', vendors['send-keys']);
 
 // initialization
 
-var windowName = '[ACTIVE]'; // todo: from config (default) or from request params
-
 // exports
 
 module.exports = {
@@ -20,9 +18,10 @@ module.exports = {
 
 // private methods
 
-function _execute(commandString) {
+function _execute(commandString, windowName) {
     return Q.promise(function (resolve, reject) {
         if (!commandString) return reject(new Error('Keys is not provided.'));
+        if (!windowName) return reject(new Error('Window is not provided.'));
 
         var command = _prepareCommand(commandString);
 
@@ -31,7 +30,7 @@ function _execute(commandString) {
         child.exec(cmd, function (err) {
             if (err) return reject(err);
 
-            resolve({ encoded: command });
+            resolve({ encoded: command, window: windowName });
         });
     });
 }
