@@ -2,7 +2,6 @@
 
 var express = require('express');
 var handleRouter = require('./handler.routes');
-var errorsRouter = require('./errors.routes');
 
 // exports
 
@@ -16,10 +15,6 @@ router.all('/api/handle', function (req, res, next) {
 });
 
 router.post('/api/handle', handleRouter.execute);
-
-router.use(errorsRouter.notFound);
-
-router.use(errorsRouter.internalServer);
 
 module.exports = router;
 
