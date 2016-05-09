@@ -5,8 +5,8 @@ var debugError = require('debug')('handlio:server:error');
 // exports
 
 module.exports = {
-    'notFound': _404,
-    'internalServer': _500
+    notFound: _404,
+    internalServer: _500
 };
 
 // initialization

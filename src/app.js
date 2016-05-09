@@ -4,6 +4,7 @@ var express = require('express');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var errorsRouter = require('./api/errors.routes');
 
 // initialization
 
@@ -17,6 +18,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 app.use('/', require('./api'));
+
+app.use(errorsRouter.notFound);
+app.use(errorsRouter.internalServer);
 
 // exports
 
