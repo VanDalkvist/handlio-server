@@ -8,6 +8,7 @@ var errorsRouter = require('./api/errors.routes');
 
 // initialization
 
+// todo: move to config
 var environmentsWithDisabledLogger = ['test'];
 
 var app = express();
@@ -28,6 +29,7 @@ module.exports = app;
 
 // private functions
 
+// todo: move to config
 function _getLoggerConfig(app) {
     return {
         skip: function () {
