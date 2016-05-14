@@ -10,7 +10,7 @@ var request = supertest.agent(serverUrl);
 
 // tests
 
-describe('Handler API: need to be sure that handler API methods receive expected responses', function() {
+describe('Handler API: need to be sure that handler API methods receive expected responses', function () {
 
     before("Starting test server... ", function () {
         server = require('../../bin/www'); // eslint-disable-line global-require
@@ -39,20 +39,47 @@ describe('Handler API: need to be sure that handler API methods receive expected
                     .end(done);
             });
 
-            it("... keys are not specified", function (done) {
+            it("... 'keys' is not specified", function (done) {
                 request
                     .post('/api/handle')
                     .expect(400)
-                    .send({hello: 'world'})
+                    .send({ hello: 'world' })
                     .end(done);
             });
 
-            it("... keys value is empty", function (done) {
+            it("... 'keys' value is empty", function (done) {
                 request
                     .post('/api/handle')
                     .expect(400)
-                    .send({keys: ''})
+                    .send({ keys: '' })
                     .end(done);
+            });
+
+            context("... 'keys' value is specified but ...", function () {
+
+                it("... 'window' is undefined", function (done) {
+                    request
+                        .post('/api/handle')
+                        .expect(400)
+                        .send({ keys: '{RIGHT}', window: undefined })
+                        .end(done);
+                });
+
+                it("... 'window' is null", function (done) {
+                    request
+                        .post('/api/handle')
+                        .expect(400)
+                        .send({ keys: '{RIGHT}', window: null })
+                        .end(done);
+                });
+
+                it("... 'window' is empty", function (done) {
+                    request
+                        .post('/api/handle')
+                        .expect(400)
+                        .send({ keys: '{RIGHT}', window: '' })
+                        .end(done);
+                });
             });
         });
 
@@ -85,11 +112,11 @@ describe('Handler API: need to be sure that handler API methods receive expected
 
     describe("Next requests should receive success responses: ", function () {
 
-        it("... when keys are specified and not empty", function (done) {
+        it("... when 'keys' and 'window' are specified and not empty", function (done) {
             request
                 .post('/api/handle')
                 .expect(200)
-                .send({keys: '{ENTER}'})
+                .send({ keys: '{RIGHT}', window: '[ACTIVE]' })
                 .end(done);
         });
 

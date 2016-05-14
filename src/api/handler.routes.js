@@ -13,8 +13,9 @@ module.exports = {
 
 function _execute(req, res) {
     var keysString = req.body.keys;
+    var windowName = req.body.window;
 
-    handler.execute(keysString).then(function (result) {
+    handler.execute(keysString, windowName).then(function (result) {
         res.json(result);
     }, function (err) {
         debugError(err);

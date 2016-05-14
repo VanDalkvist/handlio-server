@@ -4,15 +4,14 @@ var express = require('express');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var config = require('./config');
 var errorsRouter = require('./api/errors.routes');
 
 // initialization
 
-var environmentsWithDisabledLogger = ['test'];
-
 var app = express();
 
-app.use(logger('dev', _getLoggerConfig(app)));
+app.use(logger('dev', config.logger.get(app)));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
@@ -27,11 +26,3 @@ app.use(errorsRouter.internalServer);
 module.exports = app;
 
 // private functions
-
-function _getLoggerConfig(app) {
-    return {
-        skip: function () {
-            return environmentsWithDisabledLogger.indexOf(app.get('env')) >= 0;
-        }
-    };
-}
