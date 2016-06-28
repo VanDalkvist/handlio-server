@@ -1,7 +1,7 @@
 // dependencies
 
 var debugError = require('debug')('handlio:handler:error');
-var handler = require('../modules/handler');
+var handler = require('../modules/command.handler');
 
 // exports
 

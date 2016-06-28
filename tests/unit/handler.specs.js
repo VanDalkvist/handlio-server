@@ -2,7 +2,7 @@
 
 // dependencies
 
-var handler = require('../../src/modules/handler');
+var handler = require('../../src/modules/command.handler');
 var chai = require('chai');
 var expect = chai.expect;
 
