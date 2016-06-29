@@ -25,4 +25,9 @@ function _init() {
             .pipe(cover.format(['html', 'lcov']))
             .pipe(gulp.dest('reports'));
     });
+
+    gulp.task('unit-tests-only', function () {
+        return gulp.src('tests/unit/**/*.js', { read: false })
+            .pipe(mocha({ reporter: 'spec', timeout: 15000 }));
+    });
 }
