@@ -30,4 +30,9 @@ function _init() {
         return gulp.src('tests/unit/**/*.js', { read: false })
             .pipe(mocha({ reporter: 'spec', timeout: 15000 }));
     });
+
+    gulp.task('tests-without-coverage', function () {
+        return gulp.src('tests/**/*.js', { read: false })
+            .pipe(mocha({ reporter: 'spec', timeout: 15000 }));
+    });
 }

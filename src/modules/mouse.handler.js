@@ -1,7 +1,5 @@
 // dependencies
 
-var path = require('path');
-var Q = require('q');
 var robot = require("robotjs");
 
 // initialization
@@ -9,18 +7,27 @@ var robot = require("robotjs");
 // exports
 
 module.exports = {
-    moveVertically: _moveVertically
+    moveVertically: _moveVertically,
+    moveHorizontally: _moveHorizontally
 };
 
 // private methods
 
 function _moveVertically(step, times) {
-    // Speed up the mouse.
-    // robot.setMouseDelay(2);
+    _check(step, times);
+
     var currentPosition = robot.getMousePos();
-    var screenSize = robot.getScreenSize();
-    // var height = (screenSize.height / 2) - 10;
-    // var width = screenSize.width;
-    var shift = step * times;
-    robot.moveMouse(currentPosition.x, currentPosition.y + shift);
+    robot.moveMouse(currentPosition.x, currentPosition.y + step * times);
+}
+
+function _moveHorizontally(step, times) {
+    _check(step, times);
+
+    var currentPosition = robot.getMousePos();
+    robot.moveMouse(currentPosition.x + step * times, currentPosition.y);
+}
+
+function _check(step, times) {
+    if (!step) return reject(new Error('Step is not provided.'));
+    if (!times) return reject(new Error('Times is not provided.'));
 }
