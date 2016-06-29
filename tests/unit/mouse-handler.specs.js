@@ -28,6 +28,24 @@ describe("Mouse handler API should correctly work ... ", function () {
             _assertMouseYPosition(30, 3, 90);
         });
     });
+
+    describe("Mouse handler should successfully move mouse position horizontally when ... ", function () {
+        it("... step is 10, times is 2", function () {
+            _assertMouseXPosition(10, 2, 20);
+        });
+
+        it("... step is -10, times is 2", function () {
+            _assertMouseXPosition(-10, 2, -20);
+        });
+
+        it("... step is 100, times is 2", function () {
+            _assertMouseXPosition(100, 2, 200);
+        });
+
+        it("... step is 30, times is 3", function () {
+            _assertMouseXPosition(30, 3, 90);
+        });
+    });
 });
 
 function _assertMouseYPosition(step, times, expected) {
@@ -39,4 +57,15 @@ function _assertMouseYPosition(step, times, expected) {
 
     expect(newPos).to.be.ok;
     expect(newPos.y).to.be.equal(currentPos.y + expected);
+}
+
+function _assertMouseXPosition(step, times, expected) {
+    var currentPos = robot.getMousePos();
+
+    handler.moveHorizontally(step, times);
+
+    var newPos = robot.getMousePos();
+
+    expect(newPos).to.be.ok;
+    expect(newPos.x).to.be.equal(currentPos.x + expected);
 }
