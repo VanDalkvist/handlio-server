@@ -7,7 +7,7 @@ var handler = require('../modules/mouse.handler');
 
 var movers = {
     'vertical': _move(handler.moveVertically),
-    'horizontal': _move(handler.moveVertically)
+    'horizontal': _move(handler.moveHorizontally)
 };
 
 // exports
